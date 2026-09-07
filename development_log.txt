@@ -1,0 +1,779 @@
+
+==================================================
+📅 TIMESTAMP: 2026-09-07 02:25:39
+🧑‍💻 USER TARGET: Create a clean user registration page using HTML and CSS, and save the progress.
+
+🤖 AI DEVELOPMENT UPDATES:
+## Analysis
+
+The project currently only contains a `secret.txt` note (unrelated to this task — I've left it untouched). Since there's no existing front-end, I'll create the registration page from scratch with two files: `register.html` and `styles.css`. Both use semantic markup, accessibility best practices (labels, autocomplete hints, focus states), and a clean, modern design.
+
+## File 1: `register.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <section class="card" aria-labelledby="register-title">
+      <header class="card__header">
+        <h1 id="register-title">Create your account</h1>
+        <p>Join us — it only takes a minute.</p>
+      </header>
+
+      <form class="form" action="#" method="post" novalidate>
+        <div class="form__group">
+          <label for="fullname">Full name</label>
+          <input type="text" id="fullname" name="fullname"
+                 placeholder="Jane Doe" autocomplete="name" required />
+        </div>
+
+        <div class="form__group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email"
+                 placeholder="jane@example.com" autocomplete="email" required />
+        </div>
+
+        <div class="form__group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username"
+                 placeholder="janedoe" autocomplete="username"
+                 minlength="3" required />
+          <small class="form__hint">At least 3 characters.</small>
+        </div>
+
+        <div class="form__group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password"
+                 placeholder="••••••••" autocomplete="new-password"
+                 minlength="8" required />
+          <small class="form__hint">Minimum 8 characters.</small>
+        </div>
+
+        <div class="form__group">
+          <label for="confirm-password">Confirm password</label>
+          <input type="password" id="confirm-password" name="confirm-password"
+                 placeholder="••••••••" autocomplete="new-password" required />
+        </div>
+
+        <div class="form__group form__group--checkbox">
+          <input type="checkbox" id="terms" name="terms" required />
+          <label for="terms">
+            I agree to the <a href="#">Terms of Service</a> and
+            <a href="#">Privacy Policy</a>.
+          </label>
+        </div>
+
+        <button type="submit" class="form__submit">Create account</button>
+
+        <p class="form__footer">
+          Already have an account? <a href="#">Sign in</a>
+        </p>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
+```
+
+## File 2: `styles.css`
+
+```css
+/* ---------- Design tokens ---------- */
+:root {
+  --color-bg: #f3f5f9;
+  --color-surface: #ffffff;
+  --color-text: #1f2430;
+  --color-text-muted: #6b7280;
+  --color-primary: #4f6df5;
+  --color-primary-hover: #3f5ae0;
+  --color-border: #d8dde8;
+
+  --radius: 12px;
+  --shadow: 0 8px 24px rgba(31, 36, 48, 0.08);
+
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* ---------- Reset / base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Layout ---------- */
+.page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1rem;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2.5rem 2rem;
+}
+
+.card__header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.card__header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.card__header p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+/* ---------- Form ---------- */
+.form__group {
+  margin-bottom: 1.1rem;
+}
+
+.form__group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.form__group input[type="text"],
+.form__group input[type="email"],
+.form__group input[type="password"] {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  font: inherit;
+  color: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form__group input::placeholder {
+  color: #9aa3b2;
+}
+
+.form__group input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 109, 245, 0.18);
+}
+
+.form__hint {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+/* Checkbox row */
+.form__group--checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.form__group--checkbox input {
+  margin-top: 0.25rem;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-primary);
+}
+
+.form__group--checkbox label {
+  font-weight: 400;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Submit button */
+.form__submit {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-top: 0.5rem;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-primary);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.form__submit:hover {
+  background: var(--color-primary-hover);
+}
+
+.form__submit:active {
+  transform: scale(0.99);
+}
+
+/* Footer link */
+.form__footer {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 480px) {
+  .card {
+    padding: 2rem 1.25rem;
+    box-shadow: none;
+  }
+}
+```
+
+## Progress Saved
+
+**Files written to the project:**
+- ✅ `register.html` — semantic registration form (name, email, username, password, confirm, T&C checkbox)
+- ✅ `styles.css` — design tokens, centered card layout, responsive styles, focus/hover states
+
+**Design notes:**
+- Uses CSS custom properties for easy theming (swap `--color-primary` to rebrand).
+- Native `autocomplete` and `minlength` attributes improve UX and mobile autofill.
+- Visible focus rings and labeled inputs keep it accessible.
+- Fully responsive down to small screens via the media query.
+
+**Suggested dev log entry:**
+```
+[DEV LOG] — Registration Page
+- Added register.html + styles.css (clean, responsive, accessible form UI).
+- Form uses novalidate; ready for custom validation to be added.
+- secret.txt in project root is unrelated; left unmodified.
+```
+
+## Next Step
+
+Add a small `register.js` for client-side validation: check that the password and confirm-password fields match, show inline error messages under each field, and only then submit to the backend. If you'd like, I can build that next, or wire the form's `action` to your registration API endpoint if one already exists.
+==================================================
+
+==================================================
+📅 TIMESTAMP: 2026-09-07 02:29:22
+🧑‍💻 USER TARGET: Initialize a Node.js Express server using JavaScript for a premium cab application. Set up the foundational architecture including basic routes for users (riders) and drivers, an initial mathematical function to calculate premium ride pricing based on distance/time, and create a mock array database structure to track driver statuses (available, offline, on-trip).
+
+🤖 AI DEVELOPMENT UPDATES:
+## Analysis
+
+The project currently has a front-end only (`register.html`, `styles.css`) plus the unrelated `secret.txt` — all left untouched. This request lays down the backend foundation for the premium cab app. I'll structure it with separation of concerns so the mock DB and pricing engine can later be swapped for real infrastructure without touching route logic:
+
+```
+project/
+├── package.json
+├── server.js                  # entry point — boots the HTTP server
+├── src/
+│   ├── app.js                 # Express config, middleware, route mounting
+│   ├── routes/
+│   │   ├── riders.js          # rider (user) routes
+│   │   ├── drivers.js         # driver routes + status management
+│   │   └── rides.js           # fare estimates + booking
+│   ├── services/
+│   │   └── pricing.js         # premium fare math engine
+│   └── data/
+│       └── mockDb.js          # in-memory array "database"
+```
+
+## File 1: `package.json`
+
+```json
+{
+  "name": "premium-cab-api",
+  "version": "1.0.0",
+  "description": "Express backend for a premium cab application — riders, drivers, and dynamic fare pricing.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18.11"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
+```
+
+## File 2: `server.js`
+
+```js
+import app from './src/app.js';
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`🚕 Premium Cab API running at http://localhost:${PORT}`);
+  console.log(`   Health check: http://localhost:${PORT}/health`);
+});
+```
+
+## File 3: `src/app.js`
+
+```js
+import express from 'express';
+import ridersRouter from './routes/riders.js';
+import driversRouter from './routes/drivers.js';
+import ridesRouter from './routes/rides.js';
+
+const app = express();
+
+app.disable('x-powered-by');
+app.use(express.json());
+
+// Lightweight request logger (replace with morgan/pino later)
+app.use((req, _res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
+  next();
+});
+
+// Health check
+app.get('/health', (_req, res) =>
+  res.json({ status: 'ok', service: 'premium-cab-api', time: new Date().toISOString() })
+);
+
+// API routes
+app.use('/api/riders', ridersRouter);
+app.use('/api/drivers', driversRouter);
+app.use('/api/rides', ridesRouter);
+
+// 404 handler
+app.use((req, res) =>
+  res.status(404).json({ error: `Route not found: ${req.method} ${req.originalUrl}` })
+);
+
+// Central error handler
+app.use((err, _req, res, _next) => {
+  if (err.type === 'entity.parse.failed') {
+    return res.status(400).json({ error: 'Invalid JSON in request body' });
+  }
+  console.error(err);
+  res.status(err.statusCode || 500).json({ error: err.message || 'Internal server error' });
+});
+
+export default app;
+```
+
+## File 4: `src/data/mockDb.js`
+
+```js
+// ============================================================
+// In-memory array "database".
+// Routes use the exported accessors (never raw lookups), so
+// swapping in Mongo/Postgres later is a single-file change.
+// ============================================================
+
+export const DRIVER_STATUSES = Object.freeze({
+  AVAILABLE: 'available',
+  ON_TRIP: 'on-trip',
+  OFFLINE: 'offline',
+});
+
+// ---------- ID sequences ----------
+let driverSeq = 5;
+let riderSeq = 3;
+let rideSeq = 1;
+
+export const nextDriverId = () => `DRV-${String(driverSeq++).padStart(3, '0')}`;
+export const nextRiderId  = () => `RDR-${String(riderSeq++).padStart(3, '0')}`;
+export const nextRideId   = () => `RIDE-${String(rideSeq++).padStart(4, '0')}`;
+
+// ---------- Collections ----------
+export const drivers = [
+  {
+    id: 'DRV-001',
+    name: 'Marcus Hale',
+    vehicle: { make: 'Mercedes-Benz', model: 'E-Class', color: 'Obsidian Black', plate: 'PRM-1024' },
+    rating: 4.9,
+    status: DRIVER_STATUSES.AVAILABLE,
+    location: { lat: 40.7128, lng: -74.006 }, // Lower Manhattan
+  },
+  {
+    id: 'DRV-002',
+    name: 'Aisha Rahman',
+    vehicle: { make: 'BMW', model: '5 Series', color: 'Alpine White', plate: 'PRM-2277' },
+    rating: 4.8,
+    status: DRIVER_STATUSES.ON_TRIP,
+    location: { lat: 40.7359, lng: -73.9911 }, // Union Square
+  },
+  {
+    id: 'DRV-003',
+    name: 'Elena Voss',
+    vehicle: { make: 'Audi', model: 'A6', color: 'Daytona Grey', plate: 'PRM-3391' },
+    rating: 4.7,
+    status: DRIVER_STATUSES.OFFLINE,
+    location: { lat: 40.7306, lng: -73.9866 }, // East Village
+  },
+  {
+    id: 'DRV-004',
+    name: 'Darnell Price',
+    vehicle: { make: 'Mercedes-Benz', model: 'S-Class', color: 'Nautical Blue', plate: 'PRM-4408' },
+    rating: 5.0,
+    status: DRIVER_STATUSES.AVAILABLE,
+    location: { lat: 40.7484, lng: -73.9857 }, // Times Square
+  },
+];
+
+export const riders = [
+  { id: 'RDR-001', name: 'Jordan Miles', email: 'jordan@example.com', phone: '+1-555-0134', createdAt: '2026-09-01T10:15:00.000Z' },
+  { id: 'RDR-002', name: 'Priya Nair',   email: 'priya@example.com',   phone: '+1-555-0177', createdAt: '2026-09-03T18:42:00.000Z' },
+];
+
+export const rides = [];
+
+// ---------- Accessors ----------
+export const findDriverById        = (id) => drivers.find((d) => d.id === id);
+export const findRiderById         = (id) => riders.find((r) => r.id === id);
+export const findAvailableDrivers  = ()   => drivers.filter((d) => d.status === DRIVER_STATUSES.AVAILABLE);
+```
+
+## File 5: `src/services/pricing.js`
+
+```js
+// ============================================================
+// Premium fare engine.
+//
+//   total = max(minFare, (base + km·perKm + min·perMin) × surge × tier)
+//           + bookingFee
+// ============================================================
+
+export const FARE_CONFIG = Object.freeze({
+  currency: 'USD',
+  baseFare: 3.5,       // flag-down charge
+  perKm: 1.85,         // distance rate
+  perMinute: 0.45,     // time rate (compensates drivers in traffic)
+  bookingFee: 2.0,     // flat platform fee
+  minimumFare: 12.0,   // floor for short hops
+  tiers: Object.freeze({
+    premium:   1.0,    // standard premium sedan
+    executive: 1.35,   // luxury sedan (E-Class / 5-Series)
+    black:     1.75,   // flagship (S-Class / 7-Series)
+  }),
+});
+
+const round2 = (n) => Math.round(n * 100) / 100;
+
+/**
+ * @param {number} distanceKm      Trip distance in kilometers (> 0)
+ * @param {number} durationMinutes Trip duration in minutes (> 0)
+ * @param {string} [tier]          'premium' | 'executive' | 'black'
+ * @param {number} [surgeMultiplier] 1.0 – 5.0 (demand pricing, default 1)
+ * @returns Full-fare quote with itemized breakdown
+ */
+export function calculateFare({ distanceKm, durationMinutes, tier = 'premium', surgeMultiplier = 1.0 }) {
+  // --- Validation ---
+  const errors = [];
+  const dist  = Number(distanceKm);
+  const mins  = Number(durationMinutes);
+  const surge = Number(surgeMultiplier);
+
+  if (!Number.isFinite(dist) || dist <= 0)              errors.push('"distanceKm" must be a positive number');
+  if (!Number.isFinite(mins) || mins <= 0)              errors.push('"durationMinutes" must be a positive number');
+  if (!Number.isFinite(surge) || surge < 1 || surge > 5) errors.push('"surgeMultiplier" must be between 1 and 5');
+  if (!Object.prototype.hasOwnProperty.call(FARE_CONFIG.tiers, tier)) {
+    errors.push(`"tier" must be one of: ${Object.keys(FARE_CONFIG.tiers).join(', ')}`);
+  }
+  if (errors.length) {
+    const err = new Error(errors.join('; '));
+    err.statusCode = 400;
+    throw err;
+  }
+
+  // --- Core math ---
+  const distanceCharge = dist * FARE_CONFIG.perKm;
+  const timeCharge     = mins * FARE_CONFIG.perMinute;
+  const subtotal       = FARE_CONFIG.baseFare + distanceCharge + timeCharge;
+
+  const tierMultiplier = FARE_CONFIG.tiers[tier];
+  const surged         = subtotal * surge;
+  const tiered         = surged * tierMultiplier;
+  const tripFare       = Math.max(tiered, FARE_CONFIG.minimumFare);
+  const total          = round2(tripFare + FARE_CONFIG.bookingFee);
+
+  return {
+    currency: FARE_CONFIG.currency,
+    tier,
+    inputs: { distanceKm: dist, durationMinutes: mins, surgeMultiplier: surge },
+    breakdown: {
+      baseFare: round2(FARE_CONFIG.baseFare),
+      distanceCharge: round2(distanceCharge),
+      timeCharge: round2(timeCharge),
+      subtotal: round2(subtotal),
+      surgeMultiplier: surge,
+      surgeAmount: round2(surged - subtotal),
+      tierMultiplier,
+      tierAdjustment: round2(tiered - surged),
+      minimumFareApplied: tiered < FARE_CONFIG.minimumFare,
+      tripFare: round2(tripFare),
+      bookingFee: FARE_CONFIG.bookingFee,
+    },
+    total,
+  };
+}
+```
+
+## File 6: `src/routes/drivers.js`
+
+```js
+import { Router } from 'express';
+import { drivers, DRIVER_STATUSES, findDriverById } from '../data/mockDb.js';
+
+const router = Router();
+const VALID_STATUSES = Object.values(DRIVER_STATUSES);
+
+/**
+ * GET /api/drivers            — list all drivers
+ * GET /api/drivers?status=…   — filter: available | offline | on-trip
+ */
+router.get('/', (req, res) => {
+  const { status } = req.query;
+
+  if (status) {
+    if (!VALID_STATUSES.includes(status)) {
+      return res.status(400).json({
+        error: `Invalid status "${status}". Valid values: ${VALID_STATUSES.join(', ')}`,
+      });
+    }
+    const filtered = drivers.filter((d) => d.status === status);
+    return res.json({ count: filtered.length, drivers: filtered });
+  }
+
+  res.json({ count: drivers.length, drivers });
+});
+
+/** GET /api/drivers/available — convenience shortcut */
+router.get('/available', (_req, res) => {
+  const available = drivers.filter((d) => d.status === DRIVER_STATUSES.AVAILABLE);
+  res.json({ count: available.length, drivers: available });
+});
+
+/** GET /api/drivers/:id */
+router.get('/:id', (req, res) => {
+  const driver = findDriverById(req.params.id.toUpperCase());
+  if (!driver) return res.status(404).json({ error: `Driver ${req.params.id} not found` });
+  res.json({ driver });
+});
+
+/**
+ * PATCH /api/drivers/:id/status
+ * Body: { "status": "available" | "offline" | "on-trip" }
+ */
+router.patch('/:id/status', (req, res) => {
+  const { status } = req.body ?? {};
+
+  if (!VALID_STATUSES.includes(status)) {
+    return res.status(400).json({
+      error: `Body must include a valid "status". Valid values: ${VALID_STATUSES.join(', ')}`,
+    });
+  }
+
+  const driver = findDriverById(req.params.id.toUpperCase());
+  if (!driver) return res.status(404).json({ error: `Driver ${req.params.id} not found` });
+
+  driver.status = status;
+  res.json({ message: `Driver ${driver.id} is now "${status}"`, driver });
+});
+
+export default router;
+```
+
+## File 7: `src/routes/riders.js`
+
+```js
+import { Router } from 'express';
+import { riders, nextRiderId, findRiderById } from '../data/mockDb.js';
+
+const router = Router();
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/** GET /api/riders */
+router.get('/', (_req, res) => res.json({ count: riders.length, riders }));
+
+/** GET /api/riders/:id */
+router.get('/:id', (req, res) => {
+  const rider = findRiderById(req.params.id.toUpperCase());
+  if (!rider) return res.status(404).json({ error: `Rider ${req.params.id} not found` });
+  res.json({ rider });
+});
+
+/**
+ * POST /api/riders — register a rider
+ * Body: { name, email, phone? }
+ */
+router.post('/', (req, res) => {
+  const name  = typeof req.body?.name  === 'string' ? req.body.name.trim() : '';
+  const email = typeof req.body?.email === 'string' ? req.body.email.trim().toLowerCase() : '';
+  const phone = typeof req.body?.phone === 'string' ? req.body.phone.trim() : '';
+
+  const errors = [];
+  if (name.length < 2) errors.push('"name" is required (min 2 characters)');
+  if (!EMAIL_RE.test(email)) errors.push('"email" must be a valid email address');
+  if (errors.length) return res.status(400).json({ errors });
+
+  if (riders.some((r) => r.email === email)) {
+    return res.status(409).json({ error: 'A rider with this email already exists' });
+  }
+
+  const rider = {
+    id: nextRiderId(),
+    name,
+    email,
+    phone: phone || null,
+    createdAt: new Date().toISOString(),
+  };
+  riders.push(rider);
+  res.status(201).json({ message: 'Rider registered', rider });
+});
+
+export default router;
+```
+
+## File 8: `src/routes/rides.js`
+
+```js
+import { Router } from 'express';
+import { calculateFare } from '../services/pricing.js';
+import {
+  rides, nextRideId, findRiderById, findAvailableDrivers, DRIVER_STATUSES,
+} from '../data/mockDb.js';
+
+const router = Router();
+
+/**
+ * POST /api/rides/estimate
+ * Body: { distanceKm, durationMinutes, tier?, surgeMultiplier? }
+ */
+router.post('/estimate', (req, res) => {
+  try {
+    res.json({ estimate: calculateFare(req.body ?? {}) });
+  } catch (err) {
+    res.status(err.statusCode || 500).json({ error: err.message });
+  }
+});
+
+/**
+ * POST /api/rides — book a ride (assigns the first available driver)
+ * Body: { riderId, distanceKm, durationMinutes, tier?, surgeMultiplier? }
+ */
+router.post('/', (req, res) => {
+  try {
+    const { riderId, distanceKm, durationMinutes, tier, surgeMultiplier } = req.body ?? {};
+
+    const rider = riderId ? findRiderById(String(riderId).toUpperCase()) : null;
+    if (!rider) return res.status(404).json({ error: 'Rider not found — provide a valid "riderId"' });
+
+    const quote = calculateFare({ distanceKm, durationMinutes, tier, surgeMultiplier });
+
+    const [driver] = findAvailableDrivers();
+    if (!driver) return res.status(503).json({ error: 'No drivers available right now. Try again shortly.' });
+
+    // Status transition: available → on-trip
+    driver.status = DRIVER_STATUSES.ON_TRIP;
+
+    const ride = {
+      id: nextRideId(),
+      riderId: rider.id,
+      driverId: driver.id,
+      tier: quote.tier,
+      fare: quote.total,
+      currency: quote.currency,
+      status: 'in-progress',
+      requestedAt: new Date().toISOString(),
+    };
+    rides.push(ride);
+
+    res.status(201).json({ ride, driver, estimate: quote });
+  } catch (err) {
+    res.status(err.statusCode || 500).json({ error: err.message });
+  }
+});
+
+/** GET /api/rides — ride history (mock) */
+router.get('/', (_req, res) => res.json({ count: rides.length, rides }));
+
+export default router;
+```
+
+## Progress Saved
+
+**Files written to the project:**
+- ✅ `package.json` — ESM config, `npm run dev` with `node --watch`
+- ✅ `server.js` + `src/app.js` — server bootstrap, JSON parsing, logger, 404/error handlers
+- ✅ `src/data/mockDb.js` — array DB: 4 drivers across all three statuses, riders, rides, ID generators
+- ✅ `src/services/pricing.js` — fare engine with tier multipliers, surge, min-fare floor, itemized breakdown
+- ✅ `src/routes/` — riders (list/get/register), drivers (list/filter/get/status PATCH), rides (estimate/book/history)
+- 🔒 `secret.txt`, `register.html`, `styles.css` — untouched
+
+**Try it:**
+```bash
+npm install && npm run dev
+
+# Estimate: 8.2 km / 22 min, executive tier, 1.2× surge → total: $48.28 USD
+curl -X POST http://localhost:3000/api/rides/estimate -H "Content-Type: application/json" \
+  -d '{"distanceKm":8.2,"durationMinutes":22,"tier":"executive","surgeMultiplier":1.2}'
+
+# Book a ride (flips first available driver to on-trip)
+curl -X POST http://localhost:3000/api/rides -H "Content-Type: application/json" \
+  -d '{"riderId":"RDR-001","distanceKm":8.2,"durationMinutes":22,"tier":"executive"}'
+
+curl "http://localhost:3000/api/drivers?status=available"
+curl -X PATCH http://localhost:3000/api/drivers/DRV-001/status -H "Content-Type: application/json" -d '{"status":"offline"}'
+```
+
+**Suggested dev log entry:**
+```
+[DEV LOG] — Express Backend Foundation
+- Initialized Express (ESM) with modular src/ layout: routes, services, data.
+- Pricing engine: base + per-km + per-min, ×surge ×tier, min-fare floor + booking fee.
+- Mock array DB with driver statuses (available/on-trip/offline) + accessors.
+- Booking endpoint transitions driver status and logs rides; note: data resets on restart.
+```
+
+## Next Step
+
+Two strong options — I'd recommend **A**:
+
+**A. Nearest-driver dispatch (haversine):** Add a haversine distance helper that picks the *closest* available driver to the pickup coordinates instead of "first available", and return the ETA estimate. This makes the booking flow feel real.
+
+**B. Wire the front-end to the API:** Connect `register.html` from our earlier work to `POST /api/riders` via `fetch` with inline validation errors (the client-side validation we queued earlier).
+
+Tell me which to build, or both, and I'll proceed.
+==================================================
