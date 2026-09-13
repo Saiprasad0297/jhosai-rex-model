@@ -1,0 +1,18 @@
+[
+  {
+    "username": "admin",
+    "password_hash": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+    "email": "admin@fishmarket.com",
+    "full_name": "Administrator",
+    "address": "123 Market St, Ocean City",
+    "is_admin": true
+  },
+  {
+    "username": "customer",
+    "password_hash": "b041c0aeb35bb0fa4aa668ca5a920b590196fdaf9a00eb852c9b7f4d123cc6d6",
+    "email": "customer@fishmarket.com",
+    "full_name": "Regular Customer",
+    "address": "456 Harbor Ave, Seaside",
+    "is_admin": false
+  }
+]

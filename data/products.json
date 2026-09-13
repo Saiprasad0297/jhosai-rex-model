@@ -1,0 +1,75 @@
+[
+  {
+    "id": 2,
+    "name": "Gulf Shrimp (1lb)",
+    "description": "Wild-caught, peeled & deveined.",
+    "price": 9.99,
+    "original_price": 12.99,
+    "discount": 23,
+    "delivery": "Free 2-day",
+    "image": "https://via.placeholder.com/300x200?text=Shrimp",
+    "category": "Seafood",
+    "stock": 100
+  },
+  {
+    "id": 3,
+    "name": "Sea Bass Whole",
+    "description": "Fresh Mediterranean sea bass, cleaned.",
+    "price": 14.99,
+    "original_price": 18.99,
+    "discount": 21,
+    "delivery": "Standard",
+    "image": "https://via.placeholder.com/300x200?text=Sea+Bass",
+    "category": "Fish",
+    "stock": 30
+  },
+  {
+    "id": 4,
+    "name": "Tuna Steaks",
+    "description": "Yellowfin tuna steaks, sushi-grade.",
+    "price": 16.99,
+    "original_price": 20.99,
+    "discount": 19,
+    "delivery": "Free 2-day",
+    "image": "https://via.placeholder.com/300x200?text=Tuna",
+    "category": "Fish",
+    "stock": 40
+  },
+  {
+    "id": 5,
+    "name": "Crab Legs (Snow)",
+    "description": "Alaskan snow crab legs, pre-cooked.",
+    "price": 22.99,
+    "original_price": 28.99,
+    "discount": 21,
+    "delivery": "Free 2-day",
+    "image": "https://via.placeholder.com/300x200?text=Crab+Legs",
+    "category": "Seafood",
+    "stock": 25
+  },
+  {
+    "id": 6,
+    "name": "Scallops (Sea)",
+    "description": "Dry sea scallops, wild caught.",
+    "price": 19.99,
+    "original_price": 24.99,
+    "discount": 20,
+    "delivery": "Standard",
+    "image": "https://via.placeholder.com/300x200?text=Scallops",
+    "category": "Seafood",
+    "stock": 35
+  },
+  {
+    "id": 7,
+    "name": "salmon",
+    "description": "fresh and red meat salmon fish",
+    "price": 499.0,
+    "original_price": 599.0,
+    "discount": 15,
+    "delivery": "Delivered in 3 hours",
+    "image": "img/20260913081721051934.jpg",
+    "category": "Fillets & Steaks",
+    "filter": "Sea Water",
+    "stock": 20
+  }
+]
